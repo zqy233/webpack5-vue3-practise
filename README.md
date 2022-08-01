@@ -32,7 +32,7 @@ npm i -s vue@next vue-loader@next @vue/compiler-sfc
 
 > 模仿vue脚手架创建模板
 
-### 创建main.js
+### 创建src/main.js
 
 ```js
 import { createApp } from "vue"
@@ -41,7 +41,7 @@ import App from "./App.vue"
 createApp(App).mount("#app")
 ```
 
-### App.vue
+### src/App.vue
 
 ```vue
 <template>
@@ -60,7 +60,7 @@ export default {
 </script>
 ```
 
-### components/HelloWorld.vue
+### src/components/HelloWorld.vue
 
 ```vue
 <template>
