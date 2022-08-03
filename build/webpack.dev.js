@@ -3,8 +3,7 @@ const common = require("./webpack.common.js")
 const FriendlyErrorsPlugin = require("@soda/friendly-errors-webpack-plugin")
 const path = require("path")
 
-let port = "8082"
-
+const port = "8082"
 module.exports = env => {
   let dev_config = {
     devtool: "inline-source-map", //开启source map
@@ -20,6 +19,7 @@ module.exports = env => {
           use: ["style-loader", "css-loader"]
         },
         {
+          // i：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写；
           test: /\.s[ac]ss$/i,
           use: [
             // 将 JS 字符串生成为 style 节点
@@ -52,16 +52,17 @@ module.exports = env => {
     ],
     devServer: {
       host: "127.0.0.1",
-      port: port,
-      //open:"http://localhost:" + port,//打开指定窗口
-      proxy: {
-        "/api": {
-          target: "http://www.xxx.com:8080/api",
-          secure: true, // 如果是https接口，需要配置这个参数
-          changeOrigin: true,
-          pathRewrite: { "^/finchinaAPP": "" }
-        }
-      }
+      port,
+      open: true // 启动服务器后自动打开网页
+      // 设置前端代理
+      // proxy: {
+      //   "/api": {
+      //     target: "http://www.xxx.com:8080/api",
+      //     secure: true, // 如果是https接口，需要配置这个参数
+      //     changeOrigin: true,
+      //     pathRewrite: { "^/finchinaAPP": "" }
+      //   }
+      // }
     }
   }
 

@@ -1,7 +1,6 @@
 const path = require("path")
 const { VueLoaderPlugin } = require("vue-loader")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { join } = require("path")
 const webpack = require("webpack")
 module.exports = env => {
   return {
@@ -32,7 +31,7 @@ module.exports = env => {
       //配置模块如会解析
       extensions: [".vue", ".js", ".json"], //引入这些文件 可以不带后缀 按顺序解析
       alias: {
-        "@": join("../src"), //@方式引入资源
+        "@": path.join("../src"), //@方式引入资源
         // 解决警告:vue-i18n.esm-bundler.js:39 You are running the esm-bundler build of vue-i18n
         "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js"
       }

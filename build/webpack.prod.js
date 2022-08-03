@@ -10,7 +10,7 @@ module.exports = env => {
   let pro_config = {
     target: "web",
     mode: "production",
-    // devtool:'source-map',//开启将会生成map文件
+    // devtool:'source-map', // 开启将会生成map文件
     plugins: [
       // 定义全局环境变量
       // new webpack.DefinePlugin({
@@ -79,9 +79,9 @@ module.exports = env => {
       }
     }
   }
-  // if (env && env.analyzer) {
-  //   pro_config.plugins.push(new BundleAnalyzerPlugin()) // 打包体积分析
-  //   pro_config.plugins.push(new ManifestPlugin()) // 展示源代码和打包代码映射关系
-  // }
+  if (process.env.NODE_ANALYZER) {
+    pro_config.plugins.push(new BundleAnalyzerPlugin()) // 打包体积分析
+    // pro_config.plugins.push(new ManifestPlugin()) // 展示源代码和打包代码映射关系
+  }
   return merge(common(env), pro_config) //合并配置
 }
