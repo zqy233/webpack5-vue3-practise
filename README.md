@@ -1,42 +1,44 @@
 # 指南
 
-> 介绍项目架构，使用的依赖与其作用，具体webpack配置请查看源码
+> 指南文档https://zqy233.github.io/webpack5-vue3-practise/#/
+> 
+> 指南文档用于介绍项目架构，使用的依赖与其作用，具体 webpack 配置请查看源码
 
 ## 起步-搭建项目
 
-### 初始化package.json
+### 初始化 package.json
 
 ```sh
 npm init -y
 ```
 
-### 下载webpack相关依赖
+### 下载 webpack 相关依赖
 
 ```sh
 npm i webpack webpack-cli webpack-merge -D
 ```
 
-| 依赖包        | 作用                                          |
-| ------------- | --------------------------------------------- |
-| webpack       | 核心库                                        |
-| webpack-cli   | 命令行中调用webpack                           |
-| webpack-merge | 合并webpack配置文件，用于开发生产使用不同配置 |
+| 依赖包           | 作用                           |
+| ------------- | ---------------------------- |
+| webpack       | 核心库                          |
+| webpack-cli   | 命令行中调用 webpack               |
+| webpack-merge | 合并 webpack 配置文件，用于开发生产使用不同配置 |
 
 ### 新建`build`文件夹
 
 文件夹下创建`webpack.common.js`、`webpack.dev.js`、`webpack.prod.js`三个文件
 
-## html与开发服务器
+## html 与开发服务器
 
 ```sh
 npm i webpack-dev-serve html-webpack-plugin -D
 ```
 
-`webpack-dev-server`  提供一个本地server服务器
+`webpack-dev-server` 提供一个本地 server 服务器
 
-`html-webpack-plugin` 指定使用的html模板
+`html-webpack-plugin` 指定使用的 html 模板
 
-### 创建public/html文件
+### 创建 public/html 文件
 
 ```html
 <!DOCTYPE html>
@@ -58,15 +60,15 @@ npm i webpack-dev-serve html-webpack-plugin -D
 </html>
 ```
 
-## vue相关依赖
+## vue 相关依赖
 
 ```sh
 npm i -s vue@next vue-loader@next @vue/compiler-sfc
 ```
 
-> 模仿vue脚手架创建模板
+> 模仿 vue 脚手架创建模板
 
-### 创建src/main.js
+### 创建 src/main.js
 
 ```js
 import { createApp } from "vue"
@@ -127,7 +129,7 @@ button {
 npm i -D babel-loader @babel/core @babel/preset-env
 ```
 
-## 处理css/sass/less
+## 处理 css/sass/less
 
 ```sh
 npm i -D style-loader css-loader sass-loader sass less less-loader
@@ -143,19 +145,19 @@ npm i -D copy-webpack-plugin
 
 ## 控制台显示信息
 
-原始版本的`friendly-errors-webpack-plugin`已经长时间不更新了，webpack5中虽然能正常使用，但是使用npm下载依赖时会报错（yarn中不会报错），报错提示webpack版本不兼容，所以使用fork版本的`friendly-errors-webpack-plugin`
+原始版本的`friendly-errors-webpack-plugin`已经长时间不更新了，webpack5 中虽然能正常使用，但是使用 npm 下载依赖时会报错（yarn 中不会报错），报错提示 webpack 版本不兼容，所以使用 fork 版本的`friendly-errors-webpack-plugin`
 
 ```sh
 npm i -D @soda/friendly-errors-webpack-plugin
 ```
 
-## 使用i18n
+## 使用 i18n
 
 ```sh
 npm i vue-i18n@next
 ```
 
-### main.js使用
+### main.js 使用
 
 ```js
 import { createApp } from "vue"
@@ -184,7 +186,7 @@ app.use(i18n)
 app.mount("#app")
 ```
 
-### vue中使用
+### vue 中使用
 
 ```vue
 <script setup>
@@ -205,7 +207,7 @@ console.log("i18n", t("message.hello"))
 
 ### 解决控制台警告
 
-解决控制台警告  vue-i18n.esm-bundler.js:39 You are running the esm-bundler build of vue-i18n
+解决控制台警告 vue-i18n.esm-bundler.js:39 You are running the esm-bundler build of vue-i18n
 
 ```js
  alias: {

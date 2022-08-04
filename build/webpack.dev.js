@@ -1,13 +1,13 @@
 const { merge } = require("webpack-merge")
 const common = require("./webpack.common.js")
 const FriendlyErrorsPlugin = require("@soda/friendly-errors-webpack-plugin")
-const path = require("path")
 
 const port = "8082"
-module.exports = env => {
+module.exports = () => {
   let dev_config = {
     devtool: "inline-source-map", //开启source map
     mode: "development",
+    // 缓存，优化速率
     cache: {
       type: "filesystem"
     },
@@ -66,5 +66,5 @@ module.exports = env => {
     }
   }
 
-  return merge(common(env), dev_config)
+  return merge(common(), dev_config)
 }

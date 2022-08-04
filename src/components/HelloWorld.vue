@@ -13,3 +13,4 @@ console.log("process.env.NODE_ENV", process.env.NODE_ENV)
     </option>
   </select>
 </template>
+<style lang="scss"></style>

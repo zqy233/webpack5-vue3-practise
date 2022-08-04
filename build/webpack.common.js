@@ -2,14 +2,17 @@ const path = require("path")
 const { VueLoaderPlugin } = require("vue-loader")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
+
 module.exports = env => {
   return {
     entry: "./src/main.js", // 入口文件
-    stats: "errors-only", // 仅错误时显示logo
+    // stats: "errors-only", // 仅错误时显示logo
     output: {
-      filename: "assets/js/[name].code.js",
+      filename: "assets/js/[name].js",
       chunkFilename: "assets/js/[name].bundle.js", // 动态导入 分离bundle 比如lodashjs配合注释import(/* webpackChunkName: "lodash" */ 'lodash') 会打包成lodash.bundle.js
-      path: path.resolve(__dirname, "../dist")
+      path: path.resolve(__dirname, "../dist"),
+      // 清空dist文件夹
+      clean: true
     },
     plugins: [
       new VueLoaderPlugin(),
@@ -21,11 +24,10 @@ module.exports = env => {
         __VUE_PROD_DEVTOOLS__: false
       }),
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, "../public/index.html"),
-        title: "webpack5+vue3",
-        filename: "index.html" //输出的文件名
+        template: path.join(__dirname, "../public/index.html")
+        // title: "webpack5+vue3",
+        // filename: "index.html" //输出的文件名
       })
-      // new i18nPlugin(i18nConfig)
     ],
     resolve: {
       //配置模块如会解析
@@ -60,6 +62,11 @@ module.exports = env => {
               maxSize: 6 * 1024 //小于6kb的图片内联处理
             }
           }
+        },
+        // 将HTML文件转换为为字符串，生产模式下，会压缩字符串
+        {
+          test: /\.html$/i,
+          loader: "html-loader"
         }
       ]
     }
